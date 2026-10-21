@@ -2,7 +2,7 @@
 
 Base minimal images for hardware monitoring stacks
 
-[!NOTE]
+> [!NOTE]
 > The ```:latest``` tag is rebuilt nightly at 00:00 UTC with --no-cache to pull upstream security and CA certificate patches. If you need immutability, pin by SHA256 digest.
 
 ----
