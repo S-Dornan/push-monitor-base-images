@@ -65,14 +65,13 @@ jobs:
           tags: 'pi-prod-base:local-scan'
           no-cache: true
 
-# Temporarily blocked while we figure out how to get this thing running safely.
-#      - name: Run Trivy vulnerability scanner
-#        uses: aquasecurity/trivy-action@6abccf398f78b4c337599c0656f933d91efb91a0
-#        with:
-#          image-ref: 'pi-prod-base:local-scan'
-#          format: 'table'
-#          exit-code: '1' # Block pushes on critical or high vulnerability detection.
-#          severity: 'CRITICAL,HIGH'
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@6abccf398f78b4c337599c0656f933d91efb91a0
+        with:
+          image-ref: 'pi-prod-base:local-scan'
+          format: 'table'
+          exit-code: '1' # Block pushes on critical or high vulnerability detection.
+          severity: 'CRITICAL,HIGH'
 
       - name: Build and push
         uses: docker/build-push-action@v7
