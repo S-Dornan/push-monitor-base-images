@@ -5,7 +5,7 @@ name: Build and Push Pi Prod Base
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every Sunday at midnight
+    - cron: '0 0 * * *' # Runs nightly at midnight
   workflow_dispatch:
 
 
@@ -56,6 +56,24 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build local image for scanning
+        uses: docker/build-push-action@v7
+        with:
+          context: ./rpi-base
+          platforms: linux/arm64
+          load: true # Loads into the local Docker daemon instead of pushing
+          tags: 'pi-prod-base:local-scan'
+          no-cache: true
+
+# Temporarily blocked while we figure out how to get this thing running safely.
+#      - name: Run Trivy vulnerability scanner
+#        uses: aquasecurity/trivy-action@master
+#        with:
+#          image-ref: 'pi-prod-base:local-scan'
+#          format: 'table'
+#          exit-code: '1' # Block pushes on critical or high vulnerability detection.
+#          severity: 'CRITICAL,HIGH'
+
       - name: Build and push
         uses: docker/build-push-action@v7
         with:
@@ -66,4 +84,3 @@ jobs:
           provenance: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          no-cache: true
