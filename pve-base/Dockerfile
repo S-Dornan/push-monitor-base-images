@@ -6,7 +6,7 @@
 # ==========================================
 
 # 0. Uses standard Debian for testing and harvesting the necessary binaries and libraries
-FROM debian:13 AS harvester
+FROM debian:13@sha256:4c25275446ca371766b8b093c696782eabce06263fccacb8d5d813b3dc44b308 AS harvester
 
 # 1. Install prerequisites
 RUN apt-get update && apt-get install -y curl ca-certificates
