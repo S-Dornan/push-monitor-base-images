@@ -5,7 +5,7 @@ name: Build and Push Pi Prod Base
 
 on:
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday at midnight
+    - cron: '0 0 * * *' # Runs every Sunday at midnight
   workflow_dispatch:
 
 
