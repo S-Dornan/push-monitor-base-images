@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y curl raspi-utils
 # ==========================================
 
 #0. Uses debug version of Distroless base image, which includes a busybox shell to run bash scripts.
-FROM gcr.io/distroless/base-debian13:debug@sha256:b1169778b4eb71487fd26b1750e6cd2152ecd2ae60f1a350fe87bae7c6e60fd3
+FROM gcr.io/distroless/base-debian13:debug@sha256:7818c9cd19af795e737dfe8ee5074d203cd2201be7cef6570d421f88833d7b57
 
 # 1. Bring over the binaries
 COPY --from=harvester /usr/bin/curl /usr/bin/curl
