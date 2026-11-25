@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y curl
 # ==========================================
 
 #0. Uses debug version of Distroless base image, which includes a busybox shell to run bash scripts.
-FROM gcr.io/distroless/base-debian13:debug@sha256:7818c9cd19af795e737dfe8ee5074d203cd2201be7cef6570d421f88833d7b57
+FROM gcr.io/distroless/base-debian13:debug@sha256:48858464b973bfab94db426b4e4626114a296c21e127404b6acc3367a3bc172e
 
 # 1. Bring over the binaries
 COPY --from=harvester /usr/bin/curl /usr/bin/curl
